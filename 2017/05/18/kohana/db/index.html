@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Logzh的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SQL生成器 Query BuilderSelect123456789101112131415161718192021$query = DB::select();//返回一个Database_Query_Builder_Select对象，因此可以使用链式语句DB::select(&amp;apos;username&amp;apos;, &amp;apos;password&amp;apos;)//指定列名$query = DB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logzh的博客">
+<meta property="og:url" content="http://logzh.github.io/2017/05/18/kohana/db/index.html">
+<meta property="og:site_name" content="Logzh的博客">
+<meta property="og:description" content="SQL生成器 Query BuilderSelect123456789101112131415161718192021$query = DB::select();//返回一个Database_Query_Builder_Select对象，因此可以使用链式语句DB::select(&amp;apos;username&amp;apos;, &amp;apos;password&amp;apos;)//指定列名$query = DB">
+<meta property="og:updated_time" content="2017-05-18T15:48:15.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Logzh的博客">
+<meta name="twitter:description" content="SQL生成器 Query BuilderSelect123456789101112131415161718192021$query = DB::select();//返回一个Database_Query_Builder_Select对象，因此可以使用链式语句DB::select(&amp;apos;username&amp;apos;, &amp;apos;password&amp;apos;)//指定列名$query = DB">
+  
+    <link rel="alternate" href="/atom.xml" title="Logzh的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Logzh的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://logzh.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-kohana/db" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/18/kohana/db/" class="article-date">
+  <time datetime="2017-05-18T15:48:15.750Z" itemprop="datePublished">2017-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SQL生成器-Query-Builder"><a href="#SQL生成器-Query-Builder" class="headerlink" title="SQL生成器 Query Builder"></a>SQL生成器 Query Builder</h1><h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$query = DB::select();//返回一个Database_Query_Builder_Select对象，因此可以使用链式语句</div><div class="line">DB::select(&apos;username&apos;, &apos;password&apos;)//指定列名</div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;); //返回一个Database_Query_Builder_Select对象</div><div class="line">SELECT * FROM `user`</div><div class="line"></div><div class="line">$query = DB::select()-&gt;from(array(&apos;user&apos;, &apos;alias_name&apos;)); </div><div class="line">SELECT * FROM `user` AS `new_table`</div><div class="line"></div><div class="line"> where(), and_where() and or_where() methods. These methods take three parameters: a column, an operator(IN, BETWEEN, &gt;, =&lt;, !=, etc), and a value(Use an array for operators that require more than one value).</div><div class="line"></div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;)-&gt;where(&apos;username&apos;, &apos;=&apos;, &apos;john&apos;);//The where() method is a wrapper that just calls and_where().</div><div class="line"></div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;)-&gt;where(&apos;username&apos;, &apos;=&apos;, &apos;john&apos;)-&gt;or_where(&apos;username&apos;, &apos;=&apos;, &apos;jane&apos;);</div><div class="line"></div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;)-&gt;where(&apos;logins&apos;, &apos;&lt;=&apos;, 1);</div><div class="line"> </div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;)-&gt;where(&apos;logins&apos;, &apos;&gt;&apos;, 50);</div><div class="line"> </div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;)-&gt;where(&apos;username&apos;, &apos;IN&apos;, array(&apos;john&apos;,&apos;mark&apos;,&apos;matt&apos;));</div><div class="line"> </div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;)-&gt;where(&apos;joindate&apos;, &apos;BETWEEN&apos;, array($then, $now));</div></pre></td></tr></table></figure>
+<h2 id="Select-AS-column-aliases"><a href="#Select-AS-column-aliases" class="headerlink" title="Select - AS (column aliases)"></a>Select - AS (column aliases)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$query = DB::select(array(&apos;openId&apos;, &apos;wx&apos;), &apos;nickname&apos;)-&gt;from(&apos;user&apos;);</div><div class="line">SELECT `openId` AS `wx`, `nickname` FROM `user`</div><div class="line"></div><div class="line">$query = DB::select(DB::expr(&apos;openId as wx&apos;), &apos;nickname&apos;)-&gt;from(&apos;user&apos;)-&gt;execute()</div><div class="line">SELECT openId as wx, `nickname` FROM `user`</div></pre></td></tr></table></figure>
+<h2 id="Select-DISTINCT"><a href="#Select-DISTINCT" class="headerlink" title="Select - DISTINCT"></a>Select - DISTINCT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$query = DB::select(&apos;forumId&apos;)-&gt;distinct(TRUE)-&gt;from(&apos;post&apos;);</div><div class="line">SELECT DISTINCT `forumId` FROM `post`</div><div class="line">Select - LIMIT &amp; OFFSET</div><div class="line">$query = DB::select()-&gt;from(`user`)-&gt;limit(5)-&gt;offset(10);</div><div class="line">SELECT * FROM `user` LIMIT 5 OFFSET 10</div></pre></td></tr></table></figure>
+<h2 id="Select-ORDER-BY"><a href="#Select-ORDER-BY" class="headerlink" title="Select - ORDER BY"></a>Select - ORDER BY</h2><p>It takes the column name and an optional direction string as the parameters.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$query = DB::select(&apos;*&apos;)-&gt;from(&apos;user&apos;)-&gt;order_by(&apos;id&apos;, &apos;DESC&apos;);</div><div class="line">SELECT * FROM `user` ORDER BY `id` DESC</div></pre></td></tr></table></figure></p>
+<h2 id="Joins"><a href="#Joins" class="headerlink" title="Joins"></a>Joins</h2><p>join</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$query = DB::select(&apos;authors.name&apos;, &apos;posts.content&apos;)-&gt;from(&apos;authors&apos;)-&gt;join(&apos;posts&apos;)-&gt;on(&apos;authors.id&apos;, &apos;=&apos;, &apos;posts.author_id&apos;)-&gt;where(&apos;authors.name&apos;, &apos;=&apos;, &apos;smith&apos;);</div><div class="line">SELECT `authors`.`name`, `posts`.`content` FROM `authors` JOIN `posts` ON (`authors`.`id` = `posts`.`author_id`) WHERE `authors`.`name` = &apos;smith&apos;;</div></pre></td></tr></table></figure>
+<p>left join<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$query = DB::select(&apos;userTrial.*&apos;, &apos;trial.*&apos;, &apos;toy.title&apos;)</div><div class="line">            -&gt;from(&apos;userTrial&apos;)-&gt;join(&apos;trial&apos;, &apos;left&apos;)</div><div class="line">            -&gt;on(&apos;userTrial.trialId&apos;, &apos;=&apos;, &apos;trial.id&apos;)-&gt;join(&apos;toy&apos;, &apos;left&apos;)</div><div class="line">            -&gt;on(&apos;trial.toyId&apos;, &apos;=&apos;, &apos;toy.id&apos;)</div><div class="line">            -&gt;where(&apos;userTrial.userId&apos;, &apos;=&apos;, $userId)-&gt;where(&apos;userTrial.state&apos;, &apos;!=&apos;, &apos;info&apos;)</div><div class="line">            -&gt;where(&apos;userTrial.rowStatus&apos;, &apos;=&apos;, 0)-&gt;where(&apos;trial.rowStatus&apos;, &apos;=&apos;, 0)-&gt;order_by(&apos;trial.id&apos;, &apos;DESC&apos;)</div><div class="line">SELECT `userTrial`.*, `trial`.*, `toy`.`title` FROM `userTrial` LEFT JOIN `trial` ON (`userTrial`.`trialId` = `trial`.`id`) LEFT JOIN `toy` ON (`trial`.`toyId` = `toy`.`id`) WHERE `userTrial`.`userId` IS NULL AND `userTrial`.`state` != &apos;info&apos; AND `userTrial`.`rowS//tatus` = 0 AND `trial`.`rowStatus` = 0 ORDER BY `trial`.`id` DESC;</div></pre></td></tr></table></figure></p>
+<h2 id="Database-Functions"><a href="#Database-Functions" class="headerlink" title="Database Functions"></a>Database Functions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DB::select(DB::expr(&apos;COUNT(*) AS total&apos;))-&gt;from($this-&gt;_table)-&gt;where(&apos;trialId&apos;, &apos;=&apos;, $trialId)-&gt;where(&apos;state&apos;, &apos;!=&apos;, &apos;info&apos;)-&gt;where(&apos;rowStatus&apos;, &apos;=&apos;, 0);</div><div class="line">SELECT COUNT(*) AS total FROM `userTrial` WHERE `trialId` = 266 AND `rowStatus` = 0;</div></pre></td></tr></table></figure>
+<h2 id="Aggregate-Functions"><a href="#Aggregate-Functions" class="headerlink" title="Aggregate Functions"></a>Aggregate Functions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$query = DB::select(&apos;username&apos;, array(DB::expr(&apos;COUNT(`id`)&apos;), &apos;total_posts&apos;)</div><div class="line">    -&gt;from(&apos;posts&apos;)-&gt;group_by(&apos;username&apos;)-&gt;having(&apos;total_posts&apos;, &apos;&gt;=&apos;, 10);</div><div class="line">SELECT `username`, COUNT(`id`) AS `total_posts` FROM `posts` GROUP BY `username` HAVING `total_posts` &gt;= 10;</div></pre></td></tr></table></figure>
+<h2 id="Subqueries"><a href="#Subqueries" class="headerlink" title="Subqueries"></a>Subqueries</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">$sub = DB::select(&apos;username&apos;, array(DB::expr(&apos;COUNT(`id`)&apos;), &apos;total_posts&apos;)</div><div class="line">    -&gt;from(&apos;posts&apos;)-&gt;group_by(&apos;username&apos;)-&gt;having(&apos;total_posts&apos;, &apos;&gt;=&apos;, 10);</div><div class="line"> </div><div class="line">$query = DB::select(&apos;profiles.*&apos;, &apos;posts.total_posts&apos;)-&gt;from(&apos;profiles&apos;)</div><div class="line">    -&gt;join(array($sub, &apos;posts&apos;), &apos;INNER&apos;)-&gt;on(&apos;profiles.username&apos;, &apos;=&apos;, &apos;posts.username&apos;);</div><div class="line">SELECT `profiles`.*, `posts`.`total_posts` FROM `profiles` INNER JOIN</div><div class="line">( SELECT `username`, COUNT(`id`) AS `total_posts` FROM `posts` GROUP BY `username` HAVING `total_posts` &gt;= 10 ) AS posts</div><div class="line">ON `profiles`.`username` = `posts`.`username`</div><div class="line"></div><div class="line">$sub = DB::select(&apos;username&apos;, array(DB::expr(&apos;COUNT(`id`)&apos;), &apos;total_posts&apos;)</div><div class="line">    -&gt;from(&apos;posts&apos;)-&gt;group_by(&apos;username&apos;)-&gt;having(&apos;total_posts&apos;, &apos;&gt;=&apos;, 10);</div><div class="line">$query = DB::insert(&apos;post_totals&apos;, array(&apos;username&apos;, &apos;posts&apos;))-&gt;select($sub);</div><div class="line"></div><div class="line">INSERT INTO `post_totals` (`username`, `posts`) </div><div class="line">SELECT `username`, COUNT(`id`) AS `total_posts` FROM `posts` GROUP BY `username` HAVING `total_posts` &gt;= 10 </div><div class="line">Boolean Operators and Nested Clauses</div><div class="line">$query = DB::select()-&gt;from(&apos;users&apos;)</div><div class="line">    -&gt;where_open()</div><div class="line">        -&gt;or_where(&apos;id&apos;, &apos;IN&apos;, $expired)</div><div class="line">        -&gt;and_where_open()</div><div class="line">            -&gt;where(&apos;last_login&apos;, &apos;&lt;=&apos;, $last_month)</div><div class="line">            -&gt;or_where(&apos;last_login&apos;, &apos;IS&apos;, NULL)</div><div class="line">        -&gt;and_where_close()</div><div class="line">    -&gt;where_close()</div><div class="line">    -&gt;and_where(&apos;removed&apos;,&apos;IS&apos;, NULL);</div><div class="line">SELECT * FROM `users` WHERE ( `id` IN (1, 2, 3, 5) OR ( `last_login` &lt;= 1276020805 OR `last_login` IS NULL ) ) AND `removed` IS NULL ;</div></pre></td></tr></table></figure>
+<h2 id="Database-Expressions"><a href="#Database-Expressions" class="headerlink" title="Database Expressions"></a>Database Expressions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$query = DB::update(&apos;users&apos;)-&gt;set(array(&apos;login_count&apos; =&gt; DB::expr(&apos;login_count + 1&apos;)))-&gt;where(&apos;id&apos;, &apos;=&apos;, $id);</div><div class="line">$query = DB::select(array(DB::expr(&apos;degrees(acos(sin(radians(&apos;.$lat.&apos;)) * sin(radians(`latitude`)) + cos(radians(&apos;.$lat.&apos;)) * cos(radians(`latitude`)) * cos(radians(abs(&apos;.$lng.&apos; - `longitude`))))) * 69.172&apos;), &apos;distance&apos;))-&gt;from(&apos;locations&apos;);</div></pre></td></tr></table></figure>
+<h2 id="Insert、Update、Delete"><a href="#Insert、Update、Delete" class="headerlink" title="Insert、Update、Delete"></a>Insert、Update、Delete</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">$result = DB::insert(&apos;user&apos;, array(&apos;openid&apos;, &apos;nickname&apos;))</div><div class="line">    -&gt;values(array(&apos;openid&apos; =&gt; &apos;12341115&apos;, &apos;nickname&apos; =&gt; &apos;test_insert&apos;))</div><div class="line">    -&gt;execute();</div><div class="line">var_dump($result);// id, row</div><div class="line">// array (size=2)</div><div class="line">//0 =&gt; int 69//id</div><div class="line">//1 =&gt; int 1//row</div><div class="line"></div><div class="line"></div><div class="line">$result = DB::insert(&apos;user&apos;, array(&apos;openid&apos;, &apos;nickname&apos;))</div><div class="line">     -&gt;values(array(&apos;openid&apos; =&gt; &apos;12341115&apos;, &apos;nickname&apos; =&gt; &apos;test_insert&apos;))</div><div class="line">     -&gt;values(array(&apos;openid&apos; =&gt; &apos;12341116&apos;, &apos;nickname&apos; =&gt; &apos;test_insert&apos;))</div><div class="line">    -&gt;values(array(&apos;openid&apos; =&gt; &apos;12341118&apos;, &apos;nickname&apos; =&gt; &apos;test_insert&apos;))</div><div class="line">    -&gt;execute();</div><div class="line">var_dump($result);// id, row</div><div class="line">// array (size=2)</div><div class="line">//0 =&gt; int 69//id</div><div class="line">//1 =&gt; int 3//row</div><div class="line"></div><div class="line">$result = DB::update(&apos;user&apos;)</div><div class="line">   -&gt;set(array(&apos;nickname&apos; =&gt; &apos;update_name5&apos;, &apos;rowStatus&apos; =&gt; -1))</div><div class="line">   -&gt;where(&apos;nickname&apos;, &apos;=&apos;, &apos;update_name&apos;)</div><div class="line">    -&gt;execute();</div><div class="line"> var_dump($result);//row 更新行数</div><div class="line"></div><div class="line">$result = DB::delete(&apos;user&apos;)-&gt;where(&apos;rowStatus&apos;, &apos;=&apos;, -1)-&gt;execute();</div><div class="line"></div><div class="line">var_dump($result);//row 删除行数</div><div class="line">```        </div><div class="line">## Executing</div><div class="line">生成sql语句之后就是执行sql，返回Database_MySQL_Result对象</div></pre></td></tr></table></figure>
+<p>$result = $query-&gt;execute();//使用默认数据库</p>
+<p>$result = $query-&gt;execute(‘config_name’);//指定配置数据库文件</p>
+<p>$result = $query-&gt;execute(‘db_name’);//指定数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 遍历结果</div><div class="line"></div><div class="line">## 1、常规遍历</div></pre></td></tr></table></figure></p>
+<p>$rows = array();<br>foreach ($result as $row)<br>{<br>    $rows[] = $row;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">## 2、使用as_array()</div></pre></td></tr></table></figure></p>
+<p>$rows =$result-&gt;as_array();//$rows值和1中相同<br>$rows = $result-&gt;as_array(‘id’, ‘name’);//array(‘id1’ =&gt; ‘name1’, ‘id2’ =&gt; ‘name2’)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 手动参数化语句 Parameterized Statements</div><div class="line"> </div><div class="line">使用参数化的语句允许你手动编写SQL语句，同时可以防止SQL注入</div></pre></td></tr></table></figure></p>
+<p>$query = DB::query(Database::SELECT, ‘select * from user where id=:id’);<br>$query-&gt;param(‘:id’, 44);//参数名称使用唯一字符串即可，kohana使用strtr替换指定字符串，建议不要使用$，以免引起混淆<br>$result = $query-&gt;execute();</p>
+<p>$query = DB::query(Database::SELECT, ‘SELECT * FROM user WHERE sex = :sex AND rowStatus = :rowStatus’);<br>$query-&gt;parameters(array(<br>    ‘:sex’ =&gt; ‘1’,<br>    ‘:rowStatus’ =&gt; 0,<br>));<br>$result = $query-&gt;execute();</p>
+<p>$query = DB::query(Database::SELECT, ‘select * from user where id=:id’)-&gt;bind(‘:id’, $id);<br>$result = $query-&gt;execute()-&gt;as_array();</p>
+<p>$query = DB::query(Database::SELECT, ‘SELECT * FROM user WHERE sex = :sex AND rowStatus = :rowStatus’)-&gt;bind(‘:sex’, 2)-&gt;bind(‘:rowStatus’, 0);<br>$result = $query-&gt;execute();</p>
+<p>$query = DB::query(Database::UPDATE, “update user set sex=:sex, expr = :expr where id = :id”);<br>$query-&gt;parameters(array(‘:sex’ =&gt; ‘2’, ‘:expr’ =&gt; 345, ‘:id’ =&gt; 44));</p>
+<p>DB::query(Database::DELETE, “DELETE FROM itest_process_stories WHERE itest_process_stories.process_id = :process_id”)-&gt;bind(‘:process_id’, $process_id);<br>$result = $query-&gt;execute()</p>
+<p>DB::query(Database::INSERT, “…”)-&gt;bind(‘:process_id’, $process_id);<br>$result = $query-&gt;execute()<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 事务</div></pre></td></tr></table></figure></p>
+<p>$db = DB::instance();<br>try{<br>    $db-&gt;begin();<br>    …<br>    $db-&gt;commit();<br>}catch (Exception $e){<br>   $db-&gt;rollback();<br>}</p>
+<p>```</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://logzh.github.io/2017/05/18/kohana/db/" data-id="cj2uld5gi00054q0058f9pjrv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/18/travis-ci/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          test travis-ci
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/14/noe/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">noe</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/travis-ci/">travis-ci</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/travis-ci/" style="font-size: 10px;">travis-ci</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/travis-ci/">test travis-ci</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/kohana/db/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/14/noe/">noe</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Spence<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
