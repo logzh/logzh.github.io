@@ -24,7 +24,7 @@ after_script:
 
 branches:
   only:
-    - blog-source
+    - source
 env:
  global:
    - GH_REF: github.com/logzh/logzh.github.io.git
